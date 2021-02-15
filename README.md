@@ -21,17 +21,17 @@
 
 ## products テーブル
 
-| Column           | Type    | Options     |
-| ---------------- | ------- | ----------- |
-| image            | ActiveStorageで実装   |
-| title            | string  | null: false |
-| description      | text    | null: false |
-| category_id      | integer | null: false |
-| Product_condition| string  | null: false |
-| delivery_price   | string  | null: false |
-| delivery_area    | string  | null: false |
-| delivery_time    | string  | null: false |
-| user             |reference| null: false |
+| Column              | Type    | Options     |
+| ------------------- | ------- | ----------- |
+| title               | string  | null: false |
+| description         | text    | null: false |
+| category_id         | integer | null: false |
+| product_condition_id| integer | null: false |
+| delivery_price_id   | integer | null: false |
+| delivery_area_id    | integer | null: false |
+| delivery_time_id    | integer | null: false |
+| price               | string  | null: false |
+| user                |reference| null: false |
 
 ### Association
 
@@ -53,23 +53,15 @@
 - belongs_to :product
 - has_one :buyers
 
-### buy_users テーブル
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| user   | references | null: false, foreign_key: true |
-| buy    | references | null: false, foreign_key: true |
-
-### buy_product テーブル
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| product| references | null: false, foreign_key: true |
-| buy    | references | null: false, foreign_key: true |
-
-
 ## buyers テーブル
-| Column      | Type    | Options         |
-| ----------- | ------- | --------------- |
-| adress      |reference| null: false     |
+| Column         | Type    | Options         |
+| -------------- | ------- | --------------- |
+| postal_code    | string  | null: false     |
+| prefectures_id | integer | null: false     |
+| city           | string  | null: false     |
+| address        |string   | null: false     |
+| building_name  |string   | null: false     |
+| phone_number   |string   | null: false     |
 
 ### Association
 
