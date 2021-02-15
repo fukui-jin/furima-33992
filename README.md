@@ -1,24 +1,65 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column   | Type   | Options     |
+| -------- | ------ | ----------- |
+| nickname | string | null: false |
+| email    | string | null: false |
+| password | string | null: false |
+| full_name| string | null: false |
+| birthday | date   | null: false |
 
-* Ruby version
+### Association
+- has_many :product_users
+- has_many :products, through: product_users
+- has_many :buy_users
+- has_many :buys, through: buy_users
+- has_many :comment_users
+- has_many :comments, through: comment_users
 
-* System dependencies
+## comments テーブル
 
-* Configuration
+| Column   | Type     | Options     |
+| -------- | -------- | ----------- |
+| text     | text     | null: false |
+| user     |references| null: false |
+| product  |references| null: false |
 
-* Database creation
+### Association
 
-* Database initialization
+- belongs_to :user
+- belongs_to :product
 
-* How to run the test suite
+## products テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column   | Type   | Options         |
+| -------- | ------ | --------------- |
+| image       | ActiveStorageで実装   |
+| title       | string  | null: false |
+| description | text    | null: false |
+| category    | text    | null: false |
+| detail      | string  | null: false |
+| user        |reference| null: false |
 
-* Deployment instructions
+### Association
 
-* ...
+- has_many :comments_product
+- has_many :comments, through: comment_products
+- has_many :buys_product
+- has_many :buys, through: buy_products
+
+## buys テーブル
+
+| Column   | Type   | Options         |
+| -------- | ------ | --------------- |
+| adress      | string  | null: false |
+| information | string  | null: false |
+| user        |reference| null: false |
+| product     |reference| null: false |
+
+### Association
+
+- belongs_to :user
+- belongs_to :product
+
