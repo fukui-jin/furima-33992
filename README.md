@@ -14,10 +14,10 @@
 | birthday           | date   | null: false               |
 
 ### Association
-- has_many :products
-- has_many :buys
+- has_many :items
+- has_many :orders
 
-## products テーブル
+## items テーブル
 
 | Column              | Type    | Options     |
 | ------------------- | ------- | ----------- |
@@ -33,10 +33,10 @@
 
 ### Association
 
-- has_many :buys
+- has_many :orders
 - belongs_to :user
 
-## buys テーブル
+## orders テーブル
 
 | Column      | Type    | Options                         |
 | ----------- | ------- | ------------------------------- |
@@ -46,7 +46,7 @@
 ### Association
 
 - belongs_to :user
-- belongs_to :product
+- belongs_to :item
 - has_one :buyer
 
 ## buyers テーブル
@@ -58,9 +58,9 @@
 | address        | string  | null: false                     |
 | building_name  | string  |                                 |
 | phone_number   | string  | null: false                     |
-| buy            |reference| null: false, foreign_key: true  |
+| order          |reference| null: false, foreign_key: true  |
 
 ### Association
 
-- belongs_to :buy
+- belongs_to :order
 
