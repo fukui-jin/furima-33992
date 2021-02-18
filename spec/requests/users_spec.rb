@@ -113,6 +113,11 @@ RSpec.describe "Users", type: :request do
         @user.valid?
         expect(@user.errors.full_messages).to include("Birthday can't be blank")
       end
+      it "emailには@を含む必要がある" do
+        @user.email = 'testtest.com'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
+      end
     end
   end
 end
