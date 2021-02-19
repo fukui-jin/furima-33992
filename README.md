@@ -24,7 +24,7 @@
 | title               | string  | null: false |
 | description         | text    | null: false |
 | category_id         | integer | null: false |
-| product_condition_id| integer | null: false |
+| item_condition_id   | integer | null: false |
 | delivery_price_id   | integer | null: false |
 | prefectures_id      | integer | null: false |
 | delivery_time_id    | integer | null: false |
