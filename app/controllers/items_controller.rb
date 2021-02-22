@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
-
-  # authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @items = Item.all
