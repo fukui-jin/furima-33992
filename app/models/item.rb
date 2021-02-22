@@ -6,8 +6,8 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :title
     validates :description
-    validates :price
     validates :image
+    validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
   end
 
   #カテゴリーの選択が「---」の時は保存できないようにする
