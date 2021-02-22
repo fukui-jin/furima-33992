@@ -9,6 +9,7 @@ class Item < ApplicationRecord
     validates :price
     validates :image
   end
+
   #カテゴリーの選択が「---」の時は保存できないようにする
   validates :category_id, :delivery_price_id, :delivery_time_id, :item_condition_id, numericality: { other_than: 1 } 
   validates :prefectures_id, numericality: { other_than: 0 } 
@@ -19,6 +20,5 @@ class Item < ApplicationRecord
   belongs_to :delivery_price
   belongs_to :prefectures
   belongs_to :delivery_time
-
 
 end
