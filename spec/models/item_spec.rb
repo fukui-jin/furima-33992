@@ -27,32 +27,52 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Description can't be blank")
       end
-      it 'categoryが---もしくは選択されていないと出品できない' do
-        @item.category_id = '1'
+      it 'categoryで---が選択されていると出品できない' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
+      it 'categoryが選択されていないと出品できない' do
         @item.category_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Category is not a number")
       end
-      it 'item_conditionが---もしくは選択されていないと出品できない' do
-        @item.item_condition_id = '1'
+      it 'item_conditionで---が選択されていると出品できない' do
+        @item.item_condition_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Item condition must be other than 1")
+      end
+      it 'item_conditionが選択されていないと出品できない' do
         @item.item_condition_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Item condition is not a number")
       end
-      it 'delivery_priceが---もしくは選択されていないと出品できない' do
-        @item.delivery_price_id = '1'
+      it 'delivery_priceで---選択されていると出品できない' do
+        @item.delivery_price_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery price must be other than 1")
+      end
+      it 'delivery_priceが選択されていないと出品できない' do
         @item.delivery_price_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery price is not a number")
       end
-      it 'prefecturesが---もしくは選択されていないと出品できない' do
-        @item.prefectures_id = '0'
+      it 'prefecturesで---選択されていると出品できない' do
+        @item.prefectures_id = 0
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Prefectures must be other than 0")
+      end
+      it 'prefecturesが選択されていないと出品できない' do
         @item.prefectures_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefectures is not a number")
       end
-      it 'delivery_timeが---もしくは選択されていないと出品できない' do
-        @item.delivery_time_id = '1'
+      it 'delivery_timeで---が選択されてると出品できない' do
+        @item.delivery_time_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery time must be other than 1")
+      end
+      it 'delivery_timeが選択されていないと出品できない' do
         @item.delivery_time_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery time is not a number")
