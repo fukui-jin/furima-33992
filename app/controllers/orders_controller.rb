@@ -1,14 +1,13 @@
 class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
   before_action :authenticate_user!
-  before_action :sold_out_item, only: [:index]
+  before_action :sold_out_item, only: [:index, :create]
+  before_action :unauthorized_access_measures, only: [:index, :create]
 
 
   def index
     @order_buyer = OrderBuyer.new
-    if current_user == @item.user
-      redirect_to root_path
-    end
+
   end
   
 
@@ -44,6 +43,12 @@ class OrdersController < ApplicationController
 
   def sold_out_item
     if Order.exists?(item_id: "#{@item.id}")
+      redirect_to root_path
+    end
+  end
+
+  def unauthorized_access_measures
+    if current_user == @item.user
       redirect_to root_path
     end
   end

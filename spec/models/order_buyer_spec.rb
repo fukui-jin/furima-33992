@@ -13,7 +13,7 @@ RSpec.describe OrderBuyer, type: :model do
       it '入力するところが全てが適切に存在すれば購入できる' do
         expect(@order_buyer).to be_valid
       end
-      it 'addressは空でも保存できる' do
+      it 'building_nameは空でも保存できる' do
         @order_buyer.building_name = ''
         expect(@order_buyer).to be_valid
       end
