@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :item_find_id, only: [:edit, :update, :show, :destroy]
   before_action :move_to_index, only: [:edit, :update, :destroy]
+  before_action :sold_item_edit, only: [:edit, :update]
 
   def index
     @items = Item.order(created_at: :desc)
@@ -26,7 +27,7 @@ class ItemsController < ApplicationController
 
   def edit
   end
-
+  
   def update
     if @item.update(item_params)
       redirect_to item_path
@@ -34,18 +35,18 @@ class ItemsController < ApplicationController
       render :edit
     end
   end
-
+  
   def destroy
     @item.destroy
     redirect_to root_path
   end
-
+  
   private
-
+  
   def item_params
     params.require(:item).permit(:title, :description, :image, :category_id, :item_condition_id, :delivery_price_id, :prefectures_id, :delivery_time_id, :price).merge(user_id: current_user.id)
   end
-
+  
   def move_to_index
     unless @item.user.id == current_user.id
       redirect_to action: :index
@@ -55,4 +56,10 @@ class ItemsController < ApplicationController
   def item_find_id
     @item = Item.find(params[:id])
   end
+
+  def sold_item_edit
+    if Order.exists?(item_id: "#{@item.id}")
+      redirect_to root_path
+    end
+  end  
 end
